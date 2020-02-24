@@ -13,25 +13,27 @@ var Shops  = (props) => {
     );
 }
 
-Shops.getInitialProps =({ query }) => {
+Shops.getInitialProps = async ({ query }) => {
     var shopDetails = {};
-    firebase.database().ref(`/entity/${query.id}`).on('value' , (snapshot) => {
+    await firebase.database().ref(`/entity/${query.id}`).once('value').then((snapshot) => {
         let shopDetailObj = snapshot.val();
         for (let [key, value] of Object.entries(shopDetailObj)) {
             shopDetails['shopName'] = value.shopName;
             shopDetails['shopAddress'] = value.shopAddress;
         }
-    });
+        //console.log(shopDetails);
+    }).catch((error) => console.log(error));
 
     var productDetails = [];
-    firebase.database().ref(`/shop/${query.id}`).on('value' , (snapshot) => {
+    await firebase.database().ref(`/shop/${query.id}`).once('value').then((snapshot) => {
         let productDetailObj = snapshot.val();
         for (let [key, value] of Object.entries(productDetailObj)) {
             let obj = {value}
             obj["pushKey"] = key
             productDetails.push(obj)
         }
-    });
+        console.log(productDetails);
+    }).catch((error) => console.log(error));
     return {shopDetails : shopDetails, 
             productDetails : productDetails}
 };
