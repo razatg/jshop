@@ -4,9 +4,10 @@ function Layout(props ){
   return(
     <div>
        <Head>
-        <title>JiffShop.com</title>
+        <title>{props.title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content={props.desc} />
         <link rel="stylesheet" href="/static/style.css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />

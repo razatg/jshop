@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import Layout from '../components/Layout';
-//import '../static/style.css';
-//import '../static/responsive.css';
+import Footer from '../components/Footer';
 
-export default function Index(){
+const Index = function(props){
+  const title = "Welcome to JiffShop.com";
+  const desc = "Find Prooducts at best prices in a shop near you";
     return(
-        <Layout>
-        <title>JIF</title>
+        <Layout title={title} desc={desc}>
         {/* header section start */}
         <header className="header-section">
           <div className="container">
@@ -148,29 +148,10 @@ export default function Index(){
           </div>    
         </section>
         {/* footer-section */}
-        <footer className="footer-section" id="contact">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-6 col-xs-12 col-sm-6">
-                <div className="footer-left">
-          
-                {/* <Link href='/detail'><a><i className="fa fa-shopping-cart" />Details Page</a></Link> */}
-                  <a href="tel:9876543210"><i className="fa fa-phone" /> 9810329329 </a>
-                  <a href="mailto:info@jiffstore@gmail.com"><i className="fa fa-envelope" /> info@jiffstore@gmail.com </a>
-                  <a>© 2020 JiffShop.com</a>
-                </div>
-              </div>
-              <div className="col-md-6 col-xs-12 col-sm-6">
-                <div className="footer-right">
-                  <a><i className="fa fa-shopping-cart" />Featured Shops</a>
-                  <Link href="/shop/9810015717"><a>NARULAS 6, Prithviraj market,Khan Market New Delhi 110014</a></Link>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
+        <Footer shopId={"9810015717"}></Footer>
         {/* Optional JavaScript */}
         </Layout>
     );
 }
+
+export default Index;

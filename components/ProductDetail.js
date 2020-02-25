@@ -1,6 +1,11 @@
+import Link from 'next/link';
 
 const ProductDetails = (props) => {
   const {shopDetails, productDetails} = props;
+  const title = productDetails.productTitle ? productDetails.productTitle.replace(/\s+/g, '-') : "";
+  const detailURL = `${props.id}/${title}`;
+  const whatsAppURL = `https://wa.me/91${props.id}?text=I'm%20interested%20in%20your%20product%20price%20please%20[http://localhost:3000/shop/${detailURL}?pId=${props.productId}]`
+  const shopUrl = `/shop/${props.id}`;
   return(
     <div>
     <section className="header-section-inner">
@@ -9,7 +14,6 @@ const ProductDetails = (props) => {
             <div className="col-xs-12">
                <header>
                   <img src="/static/img/jiffshop.svg" alt="logo"/>
-                  <span  className="open-menu" onClick={openNav}><i className="fa fa-bars" aria-hidden="true"></i></span>
                 </header>
             </div>
 
@@ -52,26 +56,22 @@ const ProductDetails = (props) => {
               
             </div>
             <div className="details col-xs-12 col-md-8">
-              <h1 className="product-title">{productDetails.productTitle}</h1>
+              <h1 className="product-title">{productDetails.productTitle ? productDetails.productTitle : null}</h1>
               <h2>Available nearby at {shopDetails.shopName}</h2>
-              <h6> Deal Price {productDetails.dealPrice} <span> MRP {productDetails.mrp} </span></h6>
-
-              <div className="rating">
-                <div className="stars">
-                  <span className="fa fa-star checked"></span>
-                  <span className="fa fa-star checked"></span>
-                  <span className="fa fa-star checked"></span>
-                  <span className="fa fa-star"></span>
-                  <span className="fa fa-star"></span>
-                </div>
-                <span className="review-no">41 reviews</span>
-              </div>
-              <p className="product-description"><span>Description: </span> {productDetails.productDesc}</p>
-
+              {productDetails.dealPrice ? (
+                <h6> Deal Price Rs.{productDetails.dealPrice}</h6>
+              ) :( 
+                null
+              )}
+              {productDetails.mrp ? (
+                <h6><span> MRP {productDetails.mrp} </span></h6>
+              ) :( 
+                null
+              )}
               <div className="shop-now">
-                    <a href="detail.html" className="shopNowBtn"> <i className="fa fa-whatsapp" aria-hidden="true"></i>Get Best Price</a>
+                    <a href={whatsAppURL} target="_blank" className="shopNowBtn"> <i className="fa fa-whatsapp" aria-hidden="true"></i>Get Best Price</a>
               </div>
-
+              {productDetails.productDesc ? (<p className="product-description"><span>Description: </span> {productDetails.productDesc}</p>) : (null)}
             </div>
           </div>
         </div>
@@ -79,25 +79,41 @@ const ProductDetails = (props) => {
       </div>
     </div>
   </div>
-
-  <footer className="footer-section-inner"> 
-      <div className="container">
+  <section>
+    <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+              <div className="footer-inner">
+                  <h2>{shopDetails.shopName}</h2>
+                  <h3>{shopDetails.shopAddress}</h3>
+                  <h3>{shopDetails.city} {shopDetails.pinCode}</h3>
+              </div>
+          </div>
+        </div>
+    </div>
+  </section>
+  <footer className="footer-section" id="contact">
+        <div className="container">
           <div className="row">
-            <div className="col-md-12">
-                <div className="footer-inner">
-                    <h2>Ocean chemist pharmacy</h2>
-                    <h3><i className="fa fa-clock-o" aria-hidden="true"></i>open now</h3>
-                    <div className="mapouter"><div className="gmap_canvas"><iframe width="100%" height={300} id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameBorder={0} scrolling="no" marginHeight={0} marginWidth={0} /><a href="https://www.embedgooglemap.net">embedgooglemap.net</a></div><style dangerouslySetInnerHTML={{__html: ".mapouter{position:relative;text-align:right;height:300px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:300px;width:100%;}" }} /></div>
-                    <p>{shopDetails.shopName} {shopDetails.shopAddress}</p>
-                </div>
+            <div className="col-md-6 col-xs-12 col-sm-6">
+              <div className="footer-left">
+              <Link href={shopUrl}><a><i className="fa fa-shopping-cart" />Featured Shops</a></Link>
+                <a href="tel:9876543210"><i className="fa fa-phone" /> 9810329329 </a>
+                <a href="#"><i className="fa fa-whatsapp" /> Get Support </a>
+              </div>
+            </div>
+            <div className="col-md-6 col-xs-12 col-sm-6">
+              <div className="footer-right">
+                <h4>NARULAS 6, Prithviraj market,Khan Market New Delhi 110014</h4>
+                <p>© 2020 JiffStore.com</p>
+              </div>
             </div>
           </div>
-      </div>
-    </footer>
+        </div>
+      </footer>
   </div>
   
 )};
 
-var openNav = function(){}
 var closeNav = function(){}
 export default ProductDetails;
