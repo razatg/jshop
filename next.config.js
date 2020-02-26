@@ -6,6 +6,12 @@ module.exports = withSourceMaps({
     return config
   }
 })
+
+module.exports = {
+  devIndicators: {
+    autoPrerender: false,
+  },
+}
 // module.exports = withCSS({
 //     /* config options here */
 //   })

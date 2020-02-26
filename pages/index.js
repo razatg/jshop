@@ -95,7 +95,7 @@ const Index = function(props){
                 <div className="single-about-box">
                   <i className="fa fa-whatsapp" aria-hidden="true" />
                   <h4>More Business</h4>
-                  <p>Get more business by coming in top search results and through sharing on WhatsApp</p>
+                  <p>Get more business by coming in top search results and WhatsApp</p>
                 </div>
               </div>
             </div>
@@ -126,8 +126,8 @@ const Index = function(props){
                     <div className="item active">
                       <div className="row">
                         <div className="col-sm-12">
-                          <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Etiam porta sem malesuada magna mollis euismod. Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus.”</p>
-                          <small><strong>Vulputate M., Dolor</strong></small>
+                          <p>“Its like magic, just scan Barcodes of your products and they are online just like that!”</p>
+                          <small><strong>Jatin Narula, Narula Stationary, Delhi</strong></small>
                         </div>
                       </div>
                     </div>
