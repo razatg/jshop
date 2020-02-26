@@ -54,7 +54,7 @@ const ProductList = (props) =>{
                 const isLive = item.isLive ;
                 const title = item.productTitle ? item.productTitle.replace(/\s+/g, '-') : "";
                 const detailURL = `${props.id}/${title}`;
-                const whatsAppURL = `https://wa.me/91${props.id}?text=I'm%20interested%20in%20your%20product%20price%20please%20[http://${host}/shop/${detailURL}?pId=${item.pushKey}]`
+                const whatsAppURL = `https://wa.me/91${props.id}?text=I'm%20interested%20in%20this%20product,%20best%20price%20please%20-http://${host}/shop/${detailURL}?pId=${item.pushKey}`
                   return (
                     <div>
                       { isLive  ? (
