@@ -1,11 +1,33 @@
 import Link from 'next/link';
+import {useEffect} from 'react';
+import Footer from '../components/Footer';
 
 const ProductDetails = (props) => {
-  const {shopDetails, productDetails} = props;
+  const {shopDetails, productDetails , host} = props;
   const title = productDetails.productTitle ? productDetails.productTitle.replace(/\s+/g, '-') : "";
   const detailURL = `${props.id}/${title}`;
-  const whatsAppURL = `https://wa.me/91${props.id}?text=I'm%20interested%20in%20your%20product%20price%20please%20[http://localhost:3000/shop/${detailURL}?pId=${props.productId}]`
+  const whatsAppURL = `https://wa.me/91${props.id}?text=I'm%20interested%20in%20your%20product%20price%20please%20[http://${host}/shop/${detailURL}?pId=${props.productId}]`
   const shopUrl = `/shop/${props.id}`;
+
+  useEffect(() => {
+   // debugger;
+   // alert('hello')
+    $('.footer-section').css('display', 'block');
+    $('.footer-section').css('height', 'auto');
+    var footerHeight = $('.footer-section').outerHeight();
+    $('body').css('padding-bottom', footerHeight);
+    $('.footer-section').css('height', footerHeight);
+  
+  
+  // $(document).ready(function(){
+  //   footerAlign();
+  // });
+  
+  // $( window ).resize(function() {
+  //   footerAlign();
+  // });
+  
+  },[]);
   return(
     <div>
     <section className="header-section-inner">
@@ -13,7 +35,7 @@ const ProductDetails = (props) => {
          <div className="row">
             <div className="col-xs-12">
                <header>
-                  <img src="/static/img/jiffshop.svg" alt="logo"/>
+                  <a href={shopUrl}><img src="/static/img/jiffshop.svg" alt="logo"/></a>
                 </header>
             </div>
 
@@ -92,25 +114,7 @@ const ProductDetails = (props) => {
         </div>
     </div>
   </section>
-  <footer className="footer-section" id="contact">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6 col-xs-12 col-sm-6">
-              <div className="footer-left">
-              <Link href={shopUrl}><a><i className="fa fa-shopping-cart" />Featured Shops</a></Link>
-                <a href="tel:9876543210"><i className="fa fa-phone" /> 9810329329 </a>
-                <a href="#"><i className="fa fa-whatsapp" /> Get Support </a>
-              </div>
-            </div>
-            <div className="col-md-6 col-xs-12 col-sm-6">
-              <div className="footer-right">
-                <h4>NARULAS 6, Prithviraj market,Khan Market New Delhi 110014</h4>
-                <p>© 2020 JiffStore.com</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+  {/* <Footer shopId={"9810015717"}></Footer> */}
   </div>
   
 )};

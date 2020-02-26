@@ -1,8 +1,16 @@
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import Footer from '../components/Footer';
-
+import {useEffect} from 'react';
 const Index = function(props){
+  useEffect(() => {
+      $('.footer-section').css('display', 'block');
+      $('.footer-section').css('height', 'auto');
+      var footerHeight = $('.footer-section').outerHeight();
+      $('body').css('padding-bottom', footerHeight);
+      $('.footer-section').css('height', footerHeight);
+    },[]);
+    
   const title = "Welcome to JiffShop.com";
   const desc = "Find Prooducts at best prices in a shop near you";
     return(

@@ -1,7 +1,8 @@
 import Link from 'next/link';
+import Footer from '../components/Footer';
 
 const ProductList = (props) =>{
-    const { shopDetails ,productDetails } = props.details;
+    const { shopDetails ,productDetails, host } = props.details;
     const shopUrl = `/shop/${props.id}`;
     return(
       <div>
@@ -10,7 +11,7 @@ const ProductList = (props) =>{
            <div className="row">
               <div className="col-xs-12">
                  <header>
-                    <img src="../static/img/jiffshop.svg" alt="logo"/>
+                    <a href={shopUrl}><img src="../static/img/jiffshop.svg" alt="logo"/></a>
                   </header>
               </div>
   
@@ -53,13 +54,13 @@ const ProductList = (props) =>{
                 const isLive = item.isLive ;
                 const title = item.productTitle ? item.productTitle.replace(/\s+/g, '-') : "";
                 const detailURL = `${props.id}/${title}`;
-                const whatsAppURL = `https://wa.me/91${props.id}?text=I'm%20interested%20in%20your%20product%20price%20please%20[http://localhost:3000/shop/${detailURL}?pId=${item.pushKey}]`
+                const whatsAppURL = `https://wa.me/91${props.id}?text=I'm%20interested%20in%20your%20product%20price%20please%20[http://${host}/shop/${detailURL}?pId=${item.pushKey}]`
                   return (
                     <div>
                       { isLive  ? (
                       <div className="col-xs-6 col-sm-6 col-md-6 col-lg-4 zero-m-p">
                               <div className="product-box">
-                                <Link href={{pathname: detailURL , query : {pId : item.pushKey}}}>
+                                <Link href={{pathname: detailURL , query : {pId : item.pushKey}}}><a>
                                   <div className="item">
                                       <img src={item.imgSrc} className="img-fluid" />
                                       <h3> {item.productTitle ? item.productTitle : null}</h3>
@@ -73,7 +74,7 @@ const ProductList = (props) =>{
                                       ) :( 
                                         null
                                       )}
-                                  </div>
+                                  </div></a>
                                   </Link>
                                   <div className="shop-now"><a href="#">
                                   </a><a href={whatsAppURL} target="_blank" className="shopNowBtn"> <i className="fa fa-whatsapp" aria-hidden="true" />Check Price</a>
@@ -100,25 +101,7 @@ const ProductList = (props) =>{
             </div>
         </div>
       </section>
-      <footer className="footer-section" id="contact">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6 col-xs-12 col-sm-6">
-              <div className="footer-left">
-              <Link href={shopUrl}><a><i className="fa fa-shopping-cart" />Featured Shops</a></Link>
-                <a href="tel:9876543210"><i className="fa fa-phone" /> 9810329329 </a>
-                <a href="#"><i className="fa fa-whatsapp" /> Get Support </a>
-              </div>
-            </div>
-            <div className="col-md-6 col-xs-12 col-sm-6">
-              <div className="footer-right">
-                <h4>NARULAS 6, Prithviraj market,Khan Market New Delhi 110014</h4>
-                <p>© 2020 JiffStore.com</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      {/* <Footer shopId={props.id}></Footer> */}
     </div>
     );
 }

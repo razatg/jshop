@@ -15,6 +15,9 @@ function Layout(props ){
         <link rel="stylesheet" href="/static/bootstrap.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/css/bootstrap-slider.min.css"/>
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i,800,900&display=swap" rel="stylesheet" />
+        <script src="/static/js/jquery.js"></script>
+        <script src="/static/js/popper.js"></script>
+        <script src="/static/js/bootstrap.js"></script>
       </Head>
       {props.children}
     </div>

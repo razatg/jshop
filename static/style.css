@@ -18,6 +18,10 @@ time, mark, audio, video {
     font: inherit;
     vertical-align: baseline;
 }
+html {
+    position: relative;
+    min-height: 100%;
+}
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -25,6 +29,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
+    min-height: 100vh;
 }
 ol, ul {
     list-style: none;
@@ -410,10 +415,14 @@ nav.navbar{
 }
 
 .footer-section{
-       background: url(img/footer-bg.jpg) no-repeat center / cover;
-       position: relative;
+       background: url(img/footer-bg.jpg) no-repeat center / cover; 
        z-index: 1;
        padding: 60px 0;
+       position: absolute;
+       left: 0;
+       bottom: 0;
+       height: auto;
+       width: 100%;
 }
 
 

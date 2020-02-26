@@ -2,8 +2,7 @@ import Layout from '../../../components/Layout'
 import ProductDetail from '../../../components/ProductDetail';
 import {useRouter} from 'next/router';
 import firebase from '../../../init/firebase';
-import Footer from '../../../components/Footer'; 
-
+import Footer from '../../../components/Footer';
 const Product =  (props) => {
     const router = useRouter();
     const id  = router.query.id;
@@ -12,13 +11,13 @@ const Product =  (props) => {
     const desc = props.shopDetails ? `Shop for ${props.productDetails.productTitle} near you from ${props.shopDetails.shopName}. Check for best price Now!` : "Find Prooducts at best prices in a shop near you";
     return(
         <Layout title={title} desc={desc}>
-            <ProductDetail id = {id} productDetails={props.productDetails} shopDetails={props.shopDetails} productId={pId}/>
-            {/* <Footer shopId="9810015717"></Footer> */}
+            <ProductDetail id = {id} productDetails={props.productDetails} shopDetails={props.shopDetails} productId={pId} host={props.host}/>
+            <Footer shopId={id}></Footer>
         </Layout>
     );
 }
 
-Product.getInitialProps = async ({ query }) => {
+Product.getInitialProps = async ({ query , req }) => {
     let productDetailObj;
     await firebase.database().ref(`/shop/${query.id}/${query.pId}`).once('value').then( (snapshot) => {
         productDetailObj = snapshot.val();
@@ -34,7 +33,8 @@ Product.getInitialProps = async ({ query }) => {
         }
     });
     return {productDetails : productDetailObj,
-        shopDetails : shopDetails}
+        shopDetails : shopDetails,
+        host : req.headers.host}
  };
 
  export default Product

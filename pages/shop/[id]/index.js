@@ -13,12 +13,13 @@ var Shops  = (props) => {
     return(
         <Layout title={title} desc={desc}>
             <ProductList id = {shopId} details={props}/>
+            <Footer shopId={shopId}></Footer>
         </Layout>
     );
 }
 
 
-Shops.getInitialProps = async ({ query }) => {
+Shops.getInitialProps = async ({ query , req}) => {
     var shopDetails = {};
     await firebase.database().ref(`/entity/${query.id}`).once('value').then((snapshot) => {
         let shopDetailObj = snapshot.val();
@@ -40,8 +41,10 @@ Shops.getInitialProps = async ({ query }) => {
             productDetails.push(obj)
         });
     });
+    productDetails.reverse();
     return {shopDetails : shopDetails, 
-            productDetails : productDetails}
+            productDetails : productDetails,
+            host : req.headers.host}
 };
 
 
