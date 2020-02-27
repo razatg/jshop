@@ -18,6 +18,7 @@ function Layout(props ){
         <script src="/static/js/jquery.js"></script>
         <script src="/static/js/popper.js"></script>
         <script src="/static/js/bootstrap.js"></script>
+        <script src="/static/js/custom.js"></script>
       </Head>
       {props.children}
     </div>

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Layout from '../components/Layout';
 import Footer from '../components/Footer';
 import {useEffect} from 'react';
+import {encryptData } from '../helpers/crypto';
 const Index = function(props){
   useEffect(() => {
       $('.footer-section').css('display', 'block');
@@ -13,6 +14,7 @@ const Index = function(props){
     
   const title = "Welcome to JiffShop.com";
   const desc = "Find Prooducts at best prices in a shop near you";
+  const shopId = encryptData('9810015717');
     return(
         <Layout title={title} desc={desc}>
         {/* header section start */}
@@ -156,7 +158,7 @@ const Index = function(props){
           </div>    
         </section>
         {/* footer-section */}
-        <Footer shopId={"9810015717"}></Footer>
+        <Footer footerId={shopId} homeUrl="/"></Footer>
         {/* Optional JavaScript */}
         </Layout>
     );

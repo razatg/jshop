@@ -142,7 +142,7 @@
             padding-left: 0;
             color: #a79fa0;
             font-weight: 400;
-            display: block;
+            /* display: block; */
             padding-top: 9px;
         }
         .product-grid .product-box .item h6 span:before {
@@ -151,7 +151,7 @@
             height: 1px;
             color: red;
             content: '';
-            top: 17px;
+            top: 17px !important;
             left: 10px;
             right: 0;
             transform: rotate(0deg);

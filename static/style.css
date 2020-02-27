@@ -446,7 +446,7 @@ nav.navbar{
     position: relative;
 }
 
-.footer-left a{
+.footer-left a, .footer-right a{
     position: relative;
     display: block;
     padding: 10px 0;
@@ -454,12 +454,19 @@ nav.navbar{
     text-decoration: none;
 }
 
-.footer-left a:hover{
+.footer-left a:hover, .footer-right a:hover{
     color: #95c7ff;
     text-decoration: none;
 }
-
-
+.footer-head{
+    font-size: 18px;
+}
+.footer-left .navbar-brand img{
+    margin-left: -10px;
+}
+.mtop{
+    margin-top: 60px;
+}
 .footer-left a i{
     position: relative;
     background: #fbfafafc;
@@ -517,6 +524,7 @@ nav.navbar{
     padding: 10px;
     box-shadow: 1px 1px 14px 9px #0000000d;
     margin-bottom: 30px;
+    min-height: 514px;
 }
 
 .product-grid .product-box a{
@@ -544,28 +552,33 @@ nav.navbar{
     padding-bottom: 0;
     color: #000;
         font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
 }
 
-.product-grid .product-box .item h6 span {
+.product-grid .product-box .item h6 span.mrp {
     position: relative;
     padding-left: 15px;
     color: #a79fa0;
     font-weight: 400;
+    font-size: 14px;
 }
 
-.product-grid .product-box .item h6 span:before{
+.product-grid .product-box .item h6 span.mrp:before{
     position: absolute;
     width: 100%;
-    height: 1px;
-    color: red;
+    height: 1px; 
     content: '';
-    top: 9px;
-    background: #f16c4e;
+    top: 11px;
+    background: #000;
     left: 10px;
-    right: 0;
-    transform: rotate(-15deg);
+    right: 0; 
 }
-
+.mrp-container{
+    width: 100%;
+}
 .product-grid .product-box .item h6 {
     position: relative;
     font-size: 17px;
@@ -607,6 +620,14 @@ nav.navbar{
     justify-content: space-between;
 }
 
+.product-grid .product-box .shop-now{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    bottom: 5px;
+    left: 0;
+}
 .shop-now .shopNowBtn {
     position: relative;
     background: #1ad25f;
@@ -661,12 +682,35 @@ nav.navbar{
     -ms-flex-direction: column;
     flex-direction: column;
 }
+.current-mrp{
+    text-align: right;
+}
+.act-mrp{
+    text-align: left;
+}
+@media screen and (max-width: 767px) {
+    .current-mrp{
+        text-align: center;
+    }
+    .act-mrp{
+        text-align: center;
+    }
+}
+
 
 @media screen and (max-width: 996px) {
     .preview {
         margin-bottom: 20px;
     }
 }
+
+
+@media screen and (max-width: 1199px) {
+    .product-grid .product-box .shop-now{
+         position: relative;
+     }
+}
+
 
 .preview-pic {
     -webkit-box-flex: 1;
@@ -1116,19 +1160,21 @@ nav.navbar{
 
 .footer-inner h2{
     position: relative;
-    font-size: 21px;
+    font-size: 18px;
     text-transform: uppercase;
-    text-align: center;
+    /* text-align: center; */
     font-weight: 600;
+    margin-bottom: 20px;
 }
 
 
 .footer-inner h3{
     position: relative;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 18px;
-    padding-bottom: 20px;
+    /* text-align: center; */
+    /* text-transform: uppercase; */
+    font-size: 16px;
+    /* padding-bottom: 10px; */
+    margin-top: 0;
 }
 
 
@@ -1232,25 +1278,25 @@ nav.navbar{
         padding: 0px 0;
 }
  
- .details h6 span{
-    position: relative;
-    padding-left: 16px;
+ .details h6 span.mrp{
+    position: relative; 
     color: #a79fa0;
     font-weight: 400;
     /* display: block; */
     padding-top: 9px;
+    font-size: 14px;
  }
 
 
- .details h6 span:before{
-       position: absolute;
-    width: 79%;
+ .details h6 span.mrp:before{
+    position: absolute;
+    width: 100%;
     height: 1px;
     color: red;
     content: '';
-    top: 17px;
+    top: 18px;
     background: #a79fa0;
-    left: 10px;
+    left: 0px;
     right: 0;
     transform: rotate(0deg);
  }
@@ -1272,7 +1318,7 @@ nav.navbar{
 
 .detail-wrapper{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .detail-wrapper .shop-now .shopNowBtn {
@@ -1287,7 +1333,9 @@ nav.navbar{
     text-decoration: none;
     align-items: center;
 }
-
+.text-white{
+    color: #fff;
+}
 .detail-wrapper .shop-now .shopNowBtn:hover{
     position: relative;
     background: #12B556;
@@ -1299,6 +1347,11 @@ nav.navbar{
     padding: 2px;
     width: 75%;
 }
-
+.sold-by{
+    margin: 0;
+    color: #b5b4b4;
+    font-size: 20px;
+    text-transform: uppercase;
+}
 
 

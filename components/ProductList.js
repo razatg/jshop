@@ -1,9 +1,18 @@
 import Link from 'next/link';
-import Footer from '../components/Footer';
-
+import {encryptData} from '../helpers/crypto'
+import {useEffect} from 'react';
 const ProductList = (props) =>{
     const { shopDetails ,productDetails, host } = props.details;
-    const shopUrl = `/shop/${props.id}`;
+    const shopId = encryptData(props.id);
+    const shopUrl = `/shop/${shopId}`;
+
+    useEffect(() => {
+       $('.footer-section').css('display', 'block');
+       $('.footer-section').css('height', 'auto');
+       var footerHeight = $('.footer-section').outerHeight();
+       $('body').css('padding-bottom', footerHeight);
+       $('.footer-section').css('height', footerHeight);
+     },[]);
     return(
       <div>
       <section className="header-section-inner">
@@ -53,8 +62,8 @@ const ProductList = (props) =>{
               productDetails.map(item => {
                 const isLive = item.isLive ;
                 const title = item.productTitle ? item.productTitle.replace(/\s+/g, '-') : "";
-                const detailURL = `${props.id}/${title}`;
-                const whatsAppURL = `https://wa.me/91${props.id}?text=I'm%20interested%20in%20this%20product,%20best%20price%20please%20-https://${host}/shop/${detailURL}?pId=${item.pushKey}`
+                const detailURL = `${shopId}/${title}`;
+                const whatsAppURL = `https://wa.me/91${props.id}?text=I'm%20interested%20in%20this%20product,%20best%20price%20please%20-https://${host}/shop/${props.id}/${title}?pId=${item.pushKey}`
                   return (
                     <div>
                       { isLive  ? (
@@ -62,18 +71,27 @@ const ProductList = (props) =>{
                               <div className="product-box">
                                 <Link href={{pathname: detailURL , query : {pId : item.pushKey}}}><a>
                                   <div className="item">
-                                      <img src={item.imgSrc} className="img-fluid" />
+                                      <img src="/static/img/1X1.png" className="img-fluid hidden-xs" style={{ backgroundImage: `url(${item.imgSrc})`, backgroundSize: "contain", width: "100%", backgroundRepeat: "no-repeat", backgroundPosition: "center"}} />
+                                      <img src="/static/img/1X3.png" className="img-fluid visible-xs" style={{ backgroundImage: `url(${item.imgSrc})`, backgroundSize: "contain", width: "100%", backgroundRepeat: "no-repeat", backgroundPosition: "center"}} />
                                       <h3> {item.productTitle ? item.productTitle : null}</h3>
-                                      {item.dealPrice ? (
-                                        <h6> Deal Price Rs.{ item.dealPrice}</h6>
+                                      <div className="mrp-container">
+                                        <div className="col-sm-6">
+                                        {item.dealPrice ? (
+                                        <h6 className="current-mrp">Rs. <span className="text-danger">{ item.dealPrice}</span></h6>
                                       ) :( 
                                         null
                                       )}
-                                      {item.mrp ? (
-                                        <h6><span> MRP {item.mrp} </span></h6>
+                                        </div>
+                                        <div className="col-sm-6">
+                                        {item.mrp ? (
+                                        <h6 className="act-mrp"><span className="mrp"> MRP {item.mrp} </span></h6>
                                       ) :( 
                                         null
                                       )}
+                                        </div>
+                                      </div>
+                                      
+                                      
                                   </div></a>
                                   </Link>
                                   <div className="shop-now"><a href="#">
@@ -92,11 +110,12 @@ const ProductList = (props) =>{
         <div className="container">
             <div className="row">
               <div className="col-md-12">
-                  <div className="footer-inner">
+                  <div className="footer-inner text-center">
                       <h2>{shopDetails.shopName}</h2>
                       <h3>{shopDetails.shopAddress}</h3>
                       <h3>{shopDetails.city} {shopDetails.pinCode}</h3>
                   </div>
+                  <div className="mtop"></div>
               </div>
             </div>
         </div>

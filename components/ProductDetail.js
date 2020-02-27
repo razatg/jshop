@@ -1,6 +1,4 @@
-import Link from 'next/link';
 import {useEffect} from 'react';
-import Footer from '../components/Footer';
 
 const ProductDetails = (props) => {
   const {shopDetails, productDetails , host} = props;
@@ -10,23 +8,11 @@ const ProductDetails = (props) => {
   const shopUrl = `/shop/${props.id}`;
 
   useEffect(() => {
-   // debugger;
-   // alert('hello')
     $('.footer-section').css('display', 'block');
     $('.footer-section').css('height', 'auto');
     var footerHeight = $('.footer-section').outerHeight();
     $('body').css('padding-bottom', footerHeight);
     $('.footer-section').css('height', footerHeight);
-  
-  
-  // $(document).ready(function(){
-  //   footerAlign();
-  // });
-  
-  // $( window ).resize(function() {
-  //   footerAlign();
-  // });
-  
   },[]);
   return(
     <div>
@@ -68,7 +54,7 @@ const ProductDetails = (props) => {
           <div className="col-md-12">
             <div className="detail-wrapper">
             
-            <div className="preview col-xs-12 col-md-4">
+            <div className="preview col-xs-12 col-md-3">
               
               <div className="preview-pic">
                 <div className="image"><img src={productDetails.imgSrc} className="img-responsive" /></div>
@@ -77,43 +63,52 @@ const ProductDetails = (props) => {
              
               
             </div>
-            <div className="details col-xs-12 col-md-8">
+            <div className="details col-xs-12 col-md-6">
               <h1 className="product-title">{productDetails.productTitle ? productDetails.productTitle : null}</h1>
               <h2>Available nearby at {shopDetails.shopName}</h2>
-              {productDetails.dealPrice ? (
-                <h6> Deal Price Rs.{productDetails.dealPrice}</h6>
-              ) :( 
-                null
-              )}
-              {productDetails.mrp ? (
-                <h6><span> MRP {productDetails.mrp} </span></h6>
-              ) :( 
-                null
-              )}
+
+              <div className="row">
+                <div className="col-md-4">
+                {productDetails.dealPrice ? (
+                <h6> Rs. <span className="text-danger">{productDetails.dealPrice}</span> </h6>
+                ) :( 
+                  null
+                )}
+                </div>
+                <div className="col-md-8">
+                {productDetails.mrp ? (
+                <h6><span className="mrp"> MRP {productDetails.mrp} </span></h6>
+                ) :( 
+                  null
+                )}
+                </div>
+              </div>
+              
+              
               <div className="shop-now">
                     <a href={whatsAppURL} target="_blank" className="shopNowBtn"> <i className="fa fa-whatsapp" aria-hidden="true"></i>Get Best Price</a>
               </div>
               {productDetails.productDesc ? (<p className="product-description"><span>Description: </span> {productDetails.productDesc}</p>) : (null)}
             </div>
+
+            <div className="details col-xs-12 col-md-3">
+            <div className="footer-inner clearfix">
+                <div className="footer-inner-wrapper">
+                  <h1 className="sold-by">Sold By:</h1>
+                  <h2>{shopDetails.shopName}</h2>
+                  <h3>{shopDetails.shopAddress}</h3>
+                  <h3>{shopDetails.city} {shopDetails.pinCode}</h3>
+                </div>
+                  
+              </div>
+            </div>
+
           </div>
         </div>
         </div>
       </div>
     </div>
-  </div>
-  <section>
-    <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-              <div className="footer-inner">
-                  <h2>{shopDetails.shopName}</h2>
-                  <h3>{shopDetails.shopAddress}</h3>
-                  <h3>{shopDetails.city} {shopDetails.pinCode}</h3>
-              </div>
-          </div>
-        </div>
-    </div>
-  </section>
+  </div> 
   {/* <Footer shopId={"9810015717"}></Footer> */}
   </div>
   
