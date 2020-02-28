@@ -707,6 +707,9 @@ nav.navbar{
 .text-danger {
     color: #a94442 !important;
 }
+.detail-page-wrapper{
+    min-height: calc(100vh - 365px);
+}
 @media screen and (max-width: 767px) {
     .current-mrp{
         text-align: center;

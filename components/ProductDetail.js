@@ -45,8 +45,8 @@ const ProductDetails = (props) => {
     </section>
 
 
-    <div className="container">
-    <div className="">
+    <div className="container detail-page-wrapper">
+    <div>
       <div className="container-fliud">
         <div className="wrapper row">
           <div className="col-md-12">
@@ -67,13 +67,13 @@ const ProductDetails = (props) => {
 
               <div className="row">
                 {productDetails.dealPrice ? (
-                <div className="col-xs-6">
+                <div className="col-xs-5 col-sm-5 col-md-3 pr-0">
                 <h6> Rs. <span className="text-danger">{productDetails.dealPrice}</span> </h6>
                 </div>) :( 
                   null
                 )}
                 
-                <div className="col-xs-6">
+                <div className="col-xs-7 col-sm-7 col-md-9">
                 {productDetails.mrp ? (
                 <h6><span className="mrp"> MRP {productDetails.mrp} </span></h6>
                 ) :( 
