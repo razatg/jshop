@@ -1,17 +1,14 @@
 import Link from 'next/link';
 import {encryptData} from '../helpers/crypto'
 import {useEffect} from 'react';
+import {fixedFooter} from '../helpers/commonUtils'
 const ProductList = (props) =>{
     const { shopDetails ,productDetails, host } = props.details;
     const shopId = encryptData(props.id);
-    const shopUrl = `/shop/${shopId}`;
+    const shopUrl = `/shop/${shopDetails.slug}-${shopId}`;
 
     useEffect(() => {
-       $('.footer-section').css('display', 'block');
-       $('.footer-section').css('height', 'auto');
-       var footerHeight = $('.footer-section').outerHeight();
-       $('body').css('padding-bottom', footerHeight);
-       $('.footer-section').css('height', footerHeight);
+       fixedFooter()
      },[]);
     return(
       <div>
@@ -62,8 +59,8 @@ const ProductList = (props) =>{
               productDetails.map(item => {
                 const isLive = item.isLive ;
                 const title = item.productTitle ? item.productTitle.replace(/\s+/g, '-') : "";
-                const detailURL = `${shopId}/${title}`;
-                const whatsAppURL = `https://wa.me/91${props.id}?text=I'm%20interested%20in%20this%20product,%20best%20price%20please%20-https://${host}/shop/${props.id}/${title}?pId=${item.pushKey}`
+                const detailURL = `${shopDetails.slug}-${shopId}/${title}`;
+                const whatsAppURL = `https://wa.me/91${props.id}?text=I'm%20interested%20in%20this%20product,%20best%20price%20please%20-https://${host}${shopUrl}/${title}?pId=${item.pushKey}`
                   return (
                     <div>
                       { isLive  ? (
@@ -120,7 +117,6 @@ const ProductList = (props) =>{
             </div>
         </div>
       </section>
-      {/* <Footer shopId={props.id}></Footer> */}
     </div>
     );
 }

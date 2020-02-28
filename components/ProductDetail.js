@@ -1,18 +1,14 @@
 import {useEffect} from 'react';
-
+import {fixedFooter} from '../helpers/commonUtils'
 const ProductDetails = (props) => {
   const {shopDetails, productDetails , host} = props;
   const title = productDetails.productTitle ? productDetails.productTitle.replace(/\s+/g, '-') : "";
   const detailURL = `${props.id}/${title}`;
-  const whatsAppURL = `https://wa.me/91${props.id}?text=I'm%20interested%20in%20this%20product,%20best%20price%20please%20-https://${host}/shop/${detailURL}?pId=${props.productId}`
+  const whatsAppURL = `https://wa.me/91${props.shopId}?text=I'm%20interested%20in%20this%20product,%20best%20price%20please%20-https://${host}/shop/${detailURL}?pId=${props.productId}`
   const shopUrl = `/shop/${props.id}`;
 
   useEffect(() => {
-    $('.footer-section').css('display', 'block');
-    $('.footer-section').css('height', 'auto');
-    var footerHeight = $('.footer-section').outerHeight();
-    $('body').css('padding-bottom', footerHeight);
-    $('.footer-section').css('height', footerHeight);
+    fixedFooter()
   },[]);
   return(
     <div>
@@ -109,7 +105,6 @@ const ProductDetails = (props) => {
       </div>
     </div>
   </div> 
-  {/* <Footer shopId={"9810015717"}></Footer> */}
   </div>
   
 )};

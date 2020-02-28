@@ -1,18 +1,16 @@
 import React from 'react';
 import Layout from '../../../components/Layout'
 import ProductList from '../../../components/ProductList';
-import {useRouter} from 'next/router';
 import firebase from '../../../init/firebase';
 import Footer from '../../../components/Footer'
 import {decryptData} from '../../../helpers/crypto'
 var Shops  = (props) => {
-    const router = useRouter();
     const title = props.shopDetails ? `${props.shopDetails.shopName} in ${props.shopDetails.city} :JiffShop` : "Welcome to JiffShop.com"; 
     const desc = props.shopDetails ? `Shop near you for ${props.shopDetails.category} products products at best prices at ${props.shopDetails.shopName} at ${props.shopDetails.shopAddress}. Check for best prices Now!` : "Find Prooducts at best prices in a shop near you";
     return(
         <Layout title={title} desc={desc}>
             <ProductList id = {props.shopId} details={props}/>
-            <Footer footerId={props.footerId}></Footer>
+            <Footer></Footer>
         </Layout>
     );
 }
@@ -20,7 +18,7 @@ var Shops  = (props) => {
 
 Shops.getInitialProps = async ({ query , req}) => {
     var shopDetails = {};
-    var shopId = decryptData(query.id)
+    var shopId = decryptData(query.id.split("-").pop())
     await firebase.database().ref(`/entity/${shopId}`).once('value').then((snapshot) => {
         let shopDetailObj = snapshot.val();
         for (let [key, value] of Object.entries(shopDetailObj)) {
@@ -29,6 +27,7 @@ Shops.getInitialProps = async ({ query , req}) => {
             shopDetails['pinCode'] = value.pinCode;
             shopDetails['city'] = value.city;
             shopDetails['category'] = value.category;
+            shopDetails['slug'] = value.slug;
         }
     }).catch((error) => console.log(error));
 

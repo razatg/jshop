@@ -3,18 +3,15 @@ import Layout from '../components/Layout';
 import Footer from '../components/Footer';
 import {useEffect} from 'react';
 import {encryptData } from '../helpers/crypto';
+import {fixedFooter} from '../helpers/commonUtils';
 const Index = function(props){
   useEffect(() => {
-      $('.footer-section').css('display', 'block');
-      $('.footer-section').css('height', 'auto');
-      var footerHeight = $('.footer-section').outerHeight();
-      $('body').css('padding-bottom', footerHeight);
-      $('.footer-section').css('height', footerHeight);
+      fixedFooter();
     },[]);
     
   const title = "Welcome to JiffShop.com";
   const desc = "Find Prooducts at best prices in a shop near you";
-  const shopId = encryptData('9810015717');
+  const shopId = `narula-stationary-${encryptData('9810015717')}`;
     return(
         <Layout title={title} desc={desc}>
         {/* header section start */}
@@ -158,7 +155,7 @@ const Index = function(props){
           </div>    
         </section>
         {/* footer-section */}
-        <Footer footerId={shopId} homeUrl="/"></Footer>
+        <Footer></Footer>
         {/* Optional JavaScript */}
         </Layout>
     );

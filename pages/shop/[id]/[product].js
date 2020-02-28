@@ -11,15 +11,15 @@ const Product =  (props) => {
     const desc = props.shopDetails ? `Shop for ${props.productDetails.productTitle} near you from ${props.shopDetails.shopName}. Check for best price Now!` : "Find Prooducts at best prices in a shop near you";
     return(
         <Layout title={title} desc={desc}>
-            <ProductDetail id = {props.shopId} productDetails={props.productDetails} shopDetails={props.shopDetails} productId={pId} host={props.host}/>
-            <Footer footerId={props.footerId}></Footer>
+            <ProductDetail id = {router.query.id} productDetails={props.productDetails} shopDetails={props.shopDetails} productId={pId} host={props.host} shopId={props.shopId}/>
+            <Footer></Footer>
         </Layout>
     );
 }
 
 Product.getInitialProps = async ({ query , req }) => {
     let productDetailObj;
-    let shopId = decryptData(query.id);
+    let shopId = decryptData(query.id.split("-").pop());
     await firebase.database().ref(`/shop/${shopId}/${query.pId}`).once('value').then( (snapshot) => {
         productDetailObj = snapshot.val();
     });
@@ -31,6 +31,7 @@ Product.getInitialProps = async ({ query , req }) => {
             shopDetails['shopAddress'] = value.shopAddress;
             shopDetails['pinCode'] = value.pinCode;
             shopDetails['city'] = value.city;
+            shopDetails['slug'] = value.slug;
         }
     });
     return {productDetails : productDetailObj,
