@@ -107,10 +107,13 @@ const ProductList = (props) =>{
         <div className="container">
             <div className="row">
               <div className="col-md-12">
-                  <div className="footer-inner text-center">
+                  <div className="footer-inner text-center details">
+                    <div className="mtop"></div>
+                    <h1 class="sold-by">Sold By:</h1>
                       <h2>{shopDetails.shopName}</h2>
                       <h3>{shopDetails.shopAddress}</h3>
                       <h3>{shopDetails.city} {shopDetails.pinCode}</h3>
+                      <div><a href="/" className="view-all-shop">View All Products in Shop</a> </div>
                   </div>
                   <div className="mtop"></div>
               </div>

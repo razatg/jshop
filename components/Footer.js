@@ -15,8 +15,8 @@ const Footer = (props) => {
                 <a href="/"><i className="fa fa-home" /> Home<br/></a>
                 {/* <Link href="/"><a className="navbar-brand" href={homeUrl}><img src="/static/img/jiffshop.svg" /></a></Link> */}
                 </div>
-              <br/>
-              <h6 className="text-white footer-head"><i className="fa fa-shopping-cart" /> Featured Shops</h6>
+               
+              <h6 className="text-white footer-head"><span className="mright-5"><i className="fa fa-shopping-cart" /></span> Featured Shops</h6>
               {featuredShops.map(shop =>{
                 let contact = shop.contact ? encryptData(shop.contact) : "";
                 let slug = shop.slug ? shop.slug : "";
@@ -31,14 +31,14 @@ const Footer = (props) => {
             </div>
             <div className="col-md-6 col-xs-12 col-sm-6">
               <div className="footer-right">
-                <div className="mtop"></div>
+                {/* <div className="mtop"></div> */}
+                <a className="text-white no-event">
+                <span className="mright-5"><i className="fa fa-phone" /> </span>9810329329<br/>
+                </a>
                 <div className="text-white">
-                <i className="fa fa-phone" /> 9810329329<br/>
-                </div>
-                <div className="text-white">
-                <a href="/"><i className="fa fa-whatsapp" /> Get Support </a>
+                <a href="/"><span className="mright-5"><i className="fa fa-whatsapp" /></span> Get Support </a>
                 </div> 
-                <p>© 2020 JiffStore.com</p>
+                <a href="/" className="no-event"><span className="mright-5"><i class="fa fa-copyright" aria-hidden="true"></i></span> 2020 JiffStore.com</a>
               </div>
             </div>
           </div>

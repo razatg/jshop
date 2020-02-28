@@ -94,6 +94,7 @@ const ProductDetails = (props) => {
                   <h2>{shopDetails.shopName}</h2>
                   <h3>{shopDetails.shopAddress}</h3>
                   <h3>{shopDetails.city} {shopDetails.pinCode}</h3>
+                  <div><a href="/" className="view-all-shop">View All Products in Shop</a> </div>
                 </div>
                   
               </div>
