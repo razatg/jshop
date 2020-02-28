@@ -175,7 +175,7 @@
             border-right: 0;
             /* border-bottom: 1px solid #d6d6d6; */
             /* border: 0; */
-            min-height: 350px;
+            min-height: 325px;
             padding-bottom: 60px;
         }
         .product-grid .product-box .shop-now {
@@ -200,7 +200,7 @@
         .product-box .item img {
             width: 100px;
             height: auto;
-            max-height: 200px;
+            max-height: 180px;
         }
         .filter-row {
             margin-bottom: 0 !important;

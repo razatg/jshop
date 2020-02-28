@@ -70,16 +70,19 @@ const ProductList = (props) =>{
                                   <div className="item">
                                       <img src="/static/img/1X1.png" className="img-fluid hidden-xs" style={{ backgroundImage: `url(${item.imgSrc})`, backgroundSize: "contain", width: "100%", backgroundRepeat: "no-repeat", backgroundPosition: "center"}} />
                                       <img src="/static/img/1X3.png" className="img-fluid visible-xs" style={{ backgroundImage: `url(${item.imgSrc})`, backgroundSize: "contain", width: "100%", backgroundRepeat: "no-repeat", backgroundPosition: "center"}} />
-                                      <h3> {item.productTitle ? item.productTitle : null}</h3>
+                                      <h3> {item.productTitle ? item.productTitle : null}</h3> 
+                                      
                                       <div className="mrp-container">
-                                        <div className="col-sm-6">
                                         {item.dealPrice ? (
-                                        <h6 className="current-mrp">Rs. <span className="text-danger">{ item.dealPrice}</span></h6>
-                                      ) :( 
+                                        <div className="col-xs-6 pl-0 pr-0">
+
+
+                                        <h6 className="current-mrp">Rs. <span className="text-danger">{ item.dealPrice}</span> </h6>
+                                        </div>) :( 
                                         null
                                       )}
-                                        </div>
-                                        <div className="col-sm-6">
+                                        
+                                        <div className="col-xs-6 pl-0 pr-0">
                                         {item.mrp ? (
                                         <h6 className="act-mrp"><span className="mrp"> MRP {item.mrp} </span></h6>
                                       ) :( 
@@ -113,7 +116,7 @@ const ProductList = (props) =>{
                       <h2>{shopDetails.shopName}</h2>
                       <h3>{shopDetails.shopAddress}</h3>
                       <h3>{shopDetails.city} {shopDetails.pinCode}</h3>
-                      <div><a href="/" className="view-all-shop">View All Products in Shop</a> </div>
+                      <Link href={shopUrl}><a className="view-all-shop">View All Products in Shop</a></Link>
                   </div>
                   <div className="mtop"></div>
               </div>

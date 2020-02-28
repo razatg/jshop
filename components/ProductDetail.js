@@ -1,5 +1,7 @@
 import {useEffect} from 'react';
 import {fixedFooter} from '../helpers/commonUtils'
+import Link from 'next/link';
+
 const ProductDetails = (props) => {
   const {shopDetails, productDetails , host} = props;
   const title = productDetails.productTitle ? productDetails.productTitle.replace(/\s+/g, '-') : "";
@@ -64,14 +66,14 @@ const ProductDetails = (props) => {
               <h2>Available nearby at {shopDetails.shopName}</h2>
 
               <div className="row">
-                <div className="col-md-4">
                 {productDetails.dealPrice ? (
+                <div className="col-xs-6">
                 <h6> Rs. <span className="text-danger">{productDetails.dealPrice}</span> </h6>
-                ) :( 
+                </div>) :( 
                   null
                 )}
-                </div>
-                <div className="col-md-8">
+                
+                <div className="col-xs-6">
                 {productDetails.mrp ? (
                 <h6><span className="mrp"> MRP {productDetails.mrp} </span></h6>
                 ) :( 
@@ -94,7 +96,7 @@ const ProductDetails = (props) => {
                   <h2>{shopDetails.shopName}</h2>
                   <h3>{shopDetails.shopAddress}</h3>
                   <h3>{shopDetails.city} {shopDetails.pinCode}</h3>
-                  <div><a href="/" className="view-all-shop">View All Products in Shop</a> </div>
+                  <Link href={shopUrl}><a className="view-all-shop">View All Products in Shop</a></Link>
                 </div>
                   
               </div>

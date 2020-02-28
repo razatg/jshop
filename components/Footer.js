@@ -38,7 +38,7 @@ const Footer = (props) => {
                 <div className="text-white">
                 <a href="/"><span className="mright-5"><i className="fa fa-whatsapp" /></span> Get Support </a>
                 </div> 
-                <a href="/" className="no-event"><span className="mright-5"><i class="fa fa-copyright" aria-hidden="true"></i></span> 2020 JiffStore.com</a>
+                <a href="/" className="no-event"><span className="mright-5"><i className="fa fa-copyright" aria-hidden="true"></i></span> 2020 JiffStore.com</a>
               </div>
             </div>
           </div>
