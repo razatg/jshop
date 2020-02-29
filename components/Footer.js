@@ -32,11 +32,11 @@ const Footer = (props) => {
             <div className="col-md-6 col-xs-12 col-sm-6">
               <div className="footer-right">
                 {/* <div className="mtop"></div> */}
-                <a className="text-white no-event">
+                <a className="text-white no-event" href="tel:+919810329329">
                 <span className="mright-5"><i className="fa fa-phone" /> </span>9810329329<br/>
                 </a>
                 <div className="text-white">
-                <a href="/"><span className="mright-5"><i className="fa fa-whatsapp" /></span> Get Support </a>
+                <a href="https://chat.whatsapp.com/BqhW4xEOczbBgBTby7sXiR"><span className="mright-5"><i className="fa fa-whatsapp" /></span> Get Support </a>
                 </div> 
                 <a href="/" className="no-event"><span className="mright-5"><i className="fa fa-copyright" aria-hidden="true"></i></span> 2020 JiffStore.com</a>
               </div>
