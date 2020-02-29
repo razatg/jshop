@@ -94,7 +94,7 @@ const Index = function(props){
                 <div className="single-about-box">
                   <i className="fa fa-whatsapp" aria-hidden="true" />
                   <h4>More Business</h4>
-                  <p>Get more business by coming in top search results and WhatsApp</p>
+                  <p>Get more business by coming in top search results and customers reaching out on WhatsApp</p>
                 </div>
               </div>
             </div>
@@ -134,8 +134,8 @@ const Index = function(props){
                     <div className="item">
                       <div className="row">
                         <div className="col-sm-12">
-                          <p>“Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.”</p>
-                          <small><strong>Fringilla A., Vulputate Sit</strong></small>
+                          <p>“Gives us a fighting chnace against the VC funded online pharmacies in our local markets”</p>
+                          <small><strong>Mohit Bhatnagar, Lifline Pharamacy, Delhi</strong></small>
                         </div>
                       </div>
                     </div>
@@ -143,8 +143,8 @@ const Index = function(props){
                     <div className="item">
                       <div className="row">
                         <div className="col-sm-12">
-                          <p>“Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum.”</p>
-                          <small><strong>Aenean A., Justo Cras</strong></small>
+                          <p>“Hamara store online minto meein”</p>
+                          <small><strong>Pravesh Sharma, Parvesh General Store, Delhi</strong></small>
                         </div>
                       </div>
                     </div>
