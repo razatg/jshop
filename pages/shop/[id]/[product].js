@@ -7,8 +7,8 @@ import {decryptData} from '../../../helpers/crypto'
 const Product =  (props) => {
     const router = useRouter();
     const pId = router.query.pId;
-    const title = props.productDetails ? `${props.productDetails.productTitle} at ${props.shopDetails.shopName}` : "Shops near you at JiffShop.com";
-    const desc = props.shopDetails ? `Shop for ${props.productDetails.productTitle} near you from ${props.shopDetails.shopName}. Check for best price Now!` : "Find Prooducts at best prices in a shop near you";
+    const title = props.productDetails ? `${props.productDetails.productTitle} at ${props.shopDetails.shopName}, ${props.shopDetails.city}` : "Shops near you at JiffShop.com";
+    const desc = props.shopDetails ? `Shop for ${props.productDetails.productTitle} near you from ${props.shopDetails.shopName} at ${props.shopDetails.shopAddress}. Check for best price Now!` : "Find Prooducts at best prices in a shop near you";
     const productMarkUp = `{"@context": "https://www.schema.org", "@type": "product","name": "${props.productDetails.productTitle}", "description": "Shop for ${props.productDetails.productTitle} near you from ${props.shopDetails.shopName}. Check for best price Now!", "offers":{"@type":"Offer", "price":"${props.shopId}", "itemCondition":"https://schema.org/NewCondition", "availability":"https://schema.org/InStock"}}`
     const shopMarkUp = `{"@context": "https://schema.org","@type": "Store", "image": ["https://www.jiffshop.com/static/img/jiffshop.svg"], "@id": "${props.shopId}","name": "${props.shopDetails.shopName}","address": {
         "@type": "PostalAddress", "streetAddress": "${props.shopDetails.shopAddress}","addressLocality": "${props.shopDetails.city}","addressRegion": "${props.shopDetails.city}",
