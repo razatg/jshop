@@ -5,10 +5,16 @@ import firebase from '../../../init/firebase';
 import Footer from '../../../components/Footer'
 import {decryptData} from '../../../helpers/crypto'
 var Shops  = (props) => {
-    const title = props.shopDetails ? `${props.shopDetails.shopName} in ${props.shopDetails.city} :JiffShop` : "Welcome to JiffShop.com"; 
+    const title = props.shopDetails ? `${props.shopDetails.shopName} in ${props.shopDetails.city} :JiffShop` : "Produucts from Shops near you at JiffShop.com"; 
     const desc = props.shopDetails ? `Shop near you for ${props.shopDetails.category} products products at best prices at ${props.shopDetails.shopName} at ${props.shopDetails.shopAddress}. Check for best prices Now!` : "Find Prooducts at best prices in a shop near you";
+    const shopMarkUp = `{"@context": "https://schema.org","@type": "Store", "@id": "${props.shopId}","name": "${props.shopDetails.shopName}","address": {
+        "@type": "PostalAddress", "streetAddress": "${props.shopDetails.shopAddress}","addressLocality": "${props.shopDetails.city}","addressRegion": "${props.shopDetails.city}",
+        "postalCode": "${props.shopDetails.pinCode}", "addressCountry": "In"},"telephone": "${props.shopDetails.mobile}","openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification","dayOfWeek": ["Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "10:00","closes": "20:00"}]}`
+    
     return(
-        <Layout title={title} desc={desc}>
+        <Layout title={title} desc={desc} markUp = {shopMarkUp}>
             <ProductList id = {props.shopId} details={props}/>
             <Footer></Footer>
         </Layout>
@@ -25,6 +31,7 @@ Shops.getInitialProps = async ({ query , req}) => {
             shopDetails['shopName'] = value.shopName;
             shopDetails['shopAddress'] = value.shopAddress;
             shopDetails['pinCode'] = value.pinCode;
+            shopDetails['mobile'] = value.mobile;
             shopDetails['city'] = value.city;
             shopDetails['category'] = value.category;
             shopDetails['slug'] = value.slug;

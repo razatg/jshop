@@ -6,6 +6,8 @@ function Layout(props ){
        <Head>
         <title>{props.title}</title>
         <meta charSet="utf-8" />
+        {(props.markUp) ? <script type="application/ld+json" dangerouslySetInnerHTML={{__html:props.markUp}} /> : "" }
+        {(props.addMarkUp) ? <script type="application/ld+json" dangerouslySetInnerHTML={{__html:props.addMarkUp}} /> : "" }
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content={props.desc} />
         <link rel="stylesheet" href="/static/style.css"/>

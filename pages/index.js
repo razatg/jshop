@@ -9,8 +9,8 @@ const Index = function(props){
       fixedFooter();
     },[]);
     
-  const title = "Welcome to JiffShop.com";
-  const desc = "Find Prooducts at best prices in a shop near you";
+  const title = "Scan Barcodes/QR to create online Shop: JiffShop";
+  const desc = "Download the Jiffy App and scan Barcodes/QR of the products in your retail shop, to create your on Website and get more customers and 💰";
   const shopId = `narula-stationary-${encryptData('9810015717')}`;
     return(
         <Layout title={title} desc={desc}>
