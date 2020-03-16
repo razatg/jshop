@@ -37,7 +37,10 @@ const Footer = (props) => {
                 </a>
                 <div className="text-white">
                 <a href="https://chat.whatsapp.com/BqhW4xEOczbBgBTby7sXiR"><span className="mright-5"><i className="fa fa-whatsapp" /></span> Get Support </a>
-                </div> 
+                </div>
+                <div className="text-white">
+                <Link href="/search"><a><span className="mright-5"><i className="fa fa-whatsapp" /></span> Search </a></Link>
+                </div>  
                 <a href="/" className="no-event"><span className="mright-5"><i className="fa fa-copyright" aria-hidden="true"></i></span> 2020 JiffShop.com</a>
               </div>
             </div>
