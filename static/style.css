@@ -1228,6 +1228,29 @@ nav.navbar{
 }
 
 
+.search-container{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    width: 50%; 
+    position: relative;
+}
+.search-container input{
+    border-radius: 20px;
+    padding-right: 35px;
+}
+.search-container button{
+    background: transparent;
+    border: none;
+    outline: none;
+    position: absolute; 
+    right: 10px;
+}
+.search-container button i{
+    color: #006dcf;
+}
+
+
 /* The side navigation menu */
 .sidenav {
   height: 100%; /* 100% Full-height */

@@ -1,35 +1,43 @@
-import FuzzySearch from 'fuzzy-search';
-import prodList from '../static/prodList.json'
-
-export default function About(){
+import Fuse from 'fuse.js'
+export default function Search(list , key){
     var searchList = [];
-
-    // prodList.forech()
-    
-    for (let [key, val] of Object.entries(prodList))  {
+    var newProductList = [];
+    let options = {
+        shouldSort: true,
+      //  threshold: 0.6,
+       // location: 0,
+      //  distance: 100,
+        minMatchCharLength: 1,
+        keys: [
+          "productTitle",
+          "productDesc"
+        ]
+      };
+    for (let [key, val] of Object.entries(list))  {
         
         if (val.isLive == true) {
             let searchObj = {}
-            searchObj['key'] = key;
-            searchObj['produtTitle'] = val.productTitle;
-            searchObj['prodctDesc'] = val.productDesc;
+            searchObj['pushKey'] = val.pushKey;
+            searchObj['cta'] = val.cta;
+            searchObj['ctaUrl'] = val.ctaUrl;
+            searchObj['data'] = val.data;
+            searchObj['dealPrice'] = val.dealPrice;
+            searchObj['imgSrc'] = val.imgSrc;
+            searchObj['isLive'] = val.isLive;
+            searchObj['mrp'] = val.mrp;
+            searchObj['productTitle'] = val.productTitle;
+            searchObj['productDesc'] = val.productDesc;
+            searchObj['timeStamp'] = val.timeStamp;
+            searchObj['type'] = val.type;
             searchList.push(searchObj);
         }
-        
-       
-    
-        
-    }
-    //console.log('hayStack',searchList);
+     }
 
-    const searchProduct = new FuzzySearch(searchList, ['productTitle', 'producDesc'], {caseSensitive:false});
-    console.log('searchResults',searchProduct.search('deli'));
-
-
-    return(
-        <div>
-            <p>Search Results for Sail:{} </p>
-        </div>
-    );
+    let fuse = new Fuse(searchList, options);
+    let result = fuse.search(key);
+    result.forEach(item =>{
+      newProductList.push(item.item)
+    })
+    return newProductList
 
 }

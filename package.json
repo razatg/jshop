@@ -10,6 +10,7 @@
     "bootstrap-slider": "^10.6.2",
     "create-next-app": "^9.2.1",
     "firebase": "^7.8.2",
+    "fuse.js": "^5.0.5-beta",
     "fuzzy-search": "^3.2.1",
     "jquery": "^3.4.1",
     "js-search": "^2.0.0",

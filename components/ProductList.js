@@ -1,15 +1,31 @@
 import Link from 'next/link';
 import {encryptData} from '../helpers/crypto'
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {fixedFooter} from '../helpers/commonUtils'
+import Search from '../pages/search'
 const ProductList = (props) =>{
     const { shopDetails ,productDetails, host } = props.details;
     const shopId = encryptData(props.id);
     const shopUrl = `/shop/${shopDetails.slug}-${shopId}`;
-
+    const [state, setState] = useState({
+      productDetails: productDetails
+    });
     useEffect(() => {
        fixedFooter()
      },[]);
+
+     function handleChange(e) {
+       let newList = []
+       if(e.target.value == ""){
+          newList = productDetails
+       }else{
+        newList = Search(productDetails , e.target.value)
+       }
+      setState({
+        productDetails: newList
+      });
+     }
+     
     return(
       <div>
       <section className="header-section-inner">
@@ -18,6 +34,12 @@ const ProductList = (props) =>{
               <div className="col-xs-12">
                  <header>
                     <a href={shopUrl}><img src="../static/img/jiffshop.svg" alt="logo"/></a>
+                    <div className="search-container">
+                        <input className="form-control form-control-lg form-control-borderless" type="text" placeholder="Search topics or keywords" onChange={handleChange}/>
+                        <button type="submit">
+                          <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </div>
                   </header>
               </div>
   
@@ -46,7 +68,6 @@ const ProductList = (props) =>{
      
       <section className="product-grid">
           <div className="container">
-  
             <div className="row">
               <div className="col-xs-12 col-md-12 zero-m-p">
                     <div className="page-title">
@@ -55,8 +76,9 @@ const ProductList = (props) =>{
                 </div>
             </div>
             <div className="row product-listing">
-              {productDetails ? 
-              productDetails.map(item => {
+              {state.productDetails.length ? 
+              state.productDetails.map(item => {
+                const ee = state.productDetails
                 const isLive = item.isLive ;
                 const title = item.productTitle ? item.productTitle.replace(/\s+/g, '-') : "";
                 const detailURL = `${shopDetails.slug}-${shopId}/${title}`;
@@ -102,7 +124,7 @@ const ProductList = (props) =>{
                       ) : ""}
                     </div>
                   )     
-                }) : null}
+                }) : `Could not find the product you were looking for! Browse All Products ${shopDetails.shopName}, ${shopDetails.city}`}
               </div>
           </div>
       </section>
