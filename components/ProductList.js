@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import {encryptData} from '../helpers/crypto'
 import {useEffect, useState} from 'react';
-import {fixedFooter} from '../helpers/commonUtils'
-import Search from '../pages/search'
+import {fixedFooter , search} from '../helpers/commonUtils'
+
 const ProductList = (props) =>{
     const { shopDetails ,productDetails, host } = props.details;
     const shopId = encryptData(props.id);
@@ -19,7 +19,7 @@ const ProductList = (props) =>{
        if(e.target.value == ""){
           newList = productDetails
        }else{
-        newList = Search(productDetails , e.target.value)
+        newList = search(productDetails , e.target.value)
        }
       setState({
         productDetails: newList
