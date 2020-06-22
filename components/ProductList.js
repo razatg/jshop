@@ -12,6 +12,7 @@ const ProductList = (props) =>{
       productDetails: productDetails
     });
     useEffect(() => {
+       qSearch(q)
        fixedFooter()
      },[]);
 
@@ -28,8 +29,9 @@ const ProductList = (props) =>{
     }
 
     function qSearch(q) {
+      console.log("11111111- " ,q)
         let newList = []
-        if (q == "") {
+        if (q == "" || q == undefined) {
             newList = productDetails
         } else {
             newList = search(productDetails, q)
@@ -50,7 +52,7 @@ const ProductList = (props) =>{
                  <header>
                     <a href={shopUrl}><img src="../static/img/jiffshop.svg" alt="logo"/></a>
                     <div className="search-container">
-                                    <input className="form-control form-control-lg form-control-borderless" type="text" placeholder="Search products"  onChange={handleChange}/>
+                                    <input className="form-control form-control-lg form-control-borderless" defaultValue={q} type="text" placeholder="Search products"  onChange={handleChange}/>
                         <button type="submit">
                           <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
