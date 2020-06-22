@@ -52,7 +52,8 @@ Shops.getInitialProps = async ({ query , req}) => {
     return {shopDetails : shopDetails, 
             productDetails : productDetails,
             shopId : shopId , 
-            footerId : query.id,
+            footerId: query.id,
+            q:query.q,
             host : req.headers.host}
 };
 

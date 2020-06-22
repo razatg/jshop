@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import {encryptData} from '../helpers/crypto'
+import { encryptData } from '../helpers/crypto';
 import {useEffect, useState} from 'react';
-import {fixedFooter , search} from '../helpers/commonUtils'
+import { fixedFooter, search } from '../helpers/commonUtils';
+
 
 const ProductList = (props) =>{
-    const { shopDetails ,productDetails, host } = props.details;
+    const { shopDetails ,productDetails, host, q } = props.details;
     const shopId = encryptData(props.id);
     const shopUrl = `/shop/${shopDetails.slug}-${shopId}`;
     const [state, setState] = useState({
@@ -24,7 +25,21 @@ const ProductList = (props) =>{
       setState({
         productDetails: newList
       });
-     }
+    }
+
+    function qSearch(q) {
+        let newList = []
+        if (q == "") {
+            newList = productDetails
+        } else {
+            newList = search(productDetails, q)
+        }
+        setState({
+            productDetails: newList
+        });
+    }
+
+   
      
     return(
       <div>
@@ -35,7 +50,7 @@ const ProductList = (props) =>{
                  <header>
                     <a href={shopUrl}><img src="../static/img/jiffshop.svg" alt="logo"/></a>
                     <div className="search-container">
-                        <input className="form-control form-control-lg form-control-borderless" type="text" placeholder="Search products" onChange={handleChange}/>
+                                    <input className="form-control form-control-lg form-control-borderless" type="text" placeholder="Search products"  onChange={handleChange}/>
                         <button type="submit">
                           <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
@@ -71,7 +86,7 @@ const ProductList = (props) =>{
             <div className="row">
               <div className="col-xs-12 col-md-12 zero-m-p">
                     <div className="page-title">
-                        <h1> All Products {shopDetails.shopName}, {shopDetails.city}</h1>
+                                <h1> All Products {shopDetails.shopName}, {shopDetails.city}</h1>
                     </div>
                 </div>
             </div>
@@ -121,7 +136,7 @@ const ProductList = (props) =>{
                                   </div>
                               </div>
                         </div>
-                      ) : ""}
+                          ) : ""}
                     </div>
                   )     
                 }) : `Could not find the product you were looking for! Browse All Products ${shopDetails.shopName}, ${shopDetails.city}`}
@@ -147,6 +162,8 @@ const ProductList = (props) =>{
       </section>
     </div>
     );
+    
 }
+
 var closeNav = function(){}
 export default ProductList;
