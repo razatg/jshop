@@ -1,4 +1,5 @@
 const withCSS = require('@zeit/next-css');
+const withOptimizedImages = require('next-optimized-images');
 const withSourceMaps = require('@zeit/next-source-maps')
 
 module.exports = withSourceMaps({
@@ -16,3 +17,10 @@ module.exports = {
 //     /* config options here */
 //   })
 //module.exports = withCSS();
+
+module.exports = withOptimizedImages({
+    webpack(config) {
+        return config;
+    }
+
+});

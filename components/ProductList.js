@@ -54,7 +54,7 @@ const ProductList = (props) =>{
                     <div className="search-container">
                                     <input className="form-control form-control-lg form-control-borderless" defaultValue={q} type="text" placeholder="Search products"  onChange={handleChange}/>
                         <button type="submit">
-                          <i class="fa fa-search" aria-hidden="true"></i>
+                          <i className="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </div>
                   </header>

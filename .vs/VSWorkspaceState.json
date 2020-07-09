@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\components",
+    "\\helpers",
+    "\\pages",
+    "\\pages\\shop",
+    "\\pages\\shop\\[id]"
   ],
-  "SelectedNode": "\\package.json",
+  "SelectedNode": "\\components\\ProductList.js",
   "PreviewInSolutionExplorer": false
 }
