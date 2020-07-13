@@ -5,14 +5,14 @@
        "contact":"9810015717",
        "shopDesc":"Narula Stationery"
     },
-    {
-       "slug":"sharma-ayurvedic",
-       "contact":"9319154499",
-       "shopDesc":"Sharma Ayurvedic"
-    },
-    {
-       "slug":"shanti-store",
-       "contact":"9810422086",
-       "shopDesc":"Parvesh General Store"
-    }
+  {
+    "slug": "teksons-bookshop",
+    "contact": "9811081249",
+    "shopDesc": "Teksons Bookshop"
+  },
+  {
+    "slug": "bala-stationer",
+    "contact": "9036102833",
+    "shopDesc": "Hp bala stationery"
+  }
   ]

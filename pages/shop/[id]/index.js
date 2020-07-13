@@ -7,7 +7,7 @@ import {decryptData} from '../../../helpers/crypto'
 
 var Shops  = (props) => {
     const title = props.shopDetails ? `${props.shopDetails.shopName} in ${props.shopDetails.city} :JiffShop` : "Produucts from Shops near you at JiffShop.com"; 
-    const desc = props.shopDetails ? `Shop near you for ${props.shopDetails.category} products products at best prices at ${props.shopDetails.shopName} at ${props.shopDetails.shopAddress}. Check for best prices Now!` : "Find Prooducts at best prices in a shop near you";
+    const desc = props.shopDetails ? `Shop near you for ${props.shopDetails.category} at best prices from ${props.shopDetails.shopName} located at ${props.shopDetails.shopAddress}. Check for best prices Now!` : "Find Prooducts at best prices in a shop near you";
     const shopMarkUp = `{"@context": "https://schema.org","@type": "Store", "image": ["https://www.jiffshop.com/static/img/jiffshop.svg"], "@id": "${props.shopId}","name": "${props.shopDetails.shopName}","address": {
         "@type": "PostalAddress", "streetAddress": "${props.shopDetails.shopAddress}","addressLocality": "${props.shopDetails.city}","addressRegion": "${props.shopDetails.city}",
         "postalCode": "${props.shopDetails.pinCode}", "addressCountry": "In"},"telephone": "${props.shopDetails.mobile}","openingHoursSpecification": [
