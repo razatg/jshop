@@ -40,15 +40,17 @@ Shops.getInitialProps = async ({ query , req}) => {
     }).catch((error) => console.log(error));
 
     var productDetails = [];
-    await firebase.database().ref(`/shop/${shopId}`).orderByChild('timeStamp').once('value').then( (snapshot) => {
+    await firebase.database().ref(`/shop/${shopId}`).orderByChild('timeStamp').limitToFirst(100).once('value').then( (snapshot) => {
         snapshot.forEach((child ) => {
             let obj = {}
             obj = child.val()
-            obj["pushKey"] = child.key
-            productDetails.push(obj)
+            if(obj.isLive == true){
+                obj["pushKey"] = child.key
+                productDetails.push(obj)
+            }
         });
     });
-    productDetails.reverse();
+ //   productDetails.reverse();
     return {shopDetails : shopDetails, 
             productDetails : productDetails,
             shopId : shopId , 
@@ -57,5 +59,41 @@ Shops.getInitialProps = async ({ query , req}) => {
             host : req.headers.host}
 };
 
+// export async function getServerSideProps({params ,req, query}) {
+//     //  console.log("232233233- ", query)
+//       var shopDetails = {};
+//       var shopId = decryptData(params.id.split("-").pop())
+//       await firebase.database().ref(`/entity/${shopId}`).once('value').then((snapshot) => {
+//           let shopDetailObj = snapshot.val();
+//           for (let [key, value] of Object.entries(shopDetailObj)) {
+//               shopDetails['shopName'] = value.shopName;
+//               shopDetails['shopAddress'] = value.shopAddress;
+//               shopDetails['pinCode'] = value.pinCode;
+//               shopDetails['mobile'] = value.mobile;
+//               shopDetails['city'] = value.city;
+//               shopDetails['category'] = value.category;
+//               shopDetails['slug'] = value.slug;
+//           }
+//       }).catch((error) => console.log(error));
+  
+//       var productDetails = [];
+//       await firebase.database().ref(`/shop/${shopId}`).orderByChild('timeStamp').limitToFirst(200).once('value').then( (snapshot) => {
+//           snapshot.forEach((child ) => {
+//               let obj = {}
+//               obj = child.val()
+//               obj["pushKey"] = child.key
+//               productDetails.push(obj)
+//           });
+//       });
+//       productDetails.reverse();
+//       return {props:{
+//                shopDetails : shopDetails, 
+//               productDetails : productDetails,
+//               shopId : shopId , 
+//               footerId: params.id,
+//             //  q:query.q,
+//               host : req.headers.host
+//           }}
+//     }
 
 export default Shops;

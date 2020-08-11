@@ -1,4 +1,5 @@
 import Fuse from 'fuse.js'
+import firebase from '../init/firebase';
 
 export function fixedFooter(){
     $('.footer-section').css('display', 'block');
@@ -49,4 +50,19 @@ export function search(list , key){
     })
     return newProductList
 
+}
+export async function fetchMore(shopId, counter){
+  var newArray = [];
+  await firebase.database().ref(`/shop/${shopId}`).orderByChild('timeStamp').limitToFirst(counter).once('value').then( (snapshot) => {
+          snapshot.forEach((child ) => {
+              let obj = {}
+              obj = child.val()
+              if(obj.isLive == true){
+                obj["pushKey"] = child.key
+                newArray.push(obj)
+              }
+          });
+      });
+     // newArray.reverse()
+      return newArray
 }

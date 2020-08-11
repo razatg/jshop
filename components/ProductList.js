@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { encryptData } from '../helpers/crypto';
 import {useEffect, useState} from 'react';
-import { fixedFooter, search } from '../helpers/commonUtils';
-
+import { fixedFooter, search , fetchMore} from '../helpers/commonUtils';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const ProductList = (props) =>{
     const { shopDetails ,productDetails, host, q } = props.details;
@@ -10,6 +10,12 @@ const ProductList = (props) =>{
     const shopUrl = `/shop/${shopDetails.slug}-${shopId}`;
     const [state, setState] = useState({
       productDetails: productDetails
+    });
+    const [counter, setCounter] = useState({
+      counter: 200
+    });
+    const [loader, setLoader] = useState({
+      loader: true
     });
     useEffect(() => {
        qSearch(q)
@@ -40,8 +46,19 @@ const ProductList = (props) =>{
             productDetails: newList
         });
     }
-
-   
+    async function loadMoreData(shopId){
+      const data = await fetchMore(shopId, counter.counter);
+      setState({
+        productDetails: data
+      });
+      setCounter({
+        counter: counter.counter + 100
+      });
+      setLoader({
+        loader: false
+      });
+    }
+  
      
     return(
       <div>
@@ -92,7 +109,20 @@ const ProductList = (props) =>{
                     </div>
                 </div>
             </div>
-            <div className="row product-listing">
+
+            <InfiniteScroll
+              dataLength={state.productDetails.length} //This is important field to render the next data
+              next={async () => {await loadMoreData(props.id)}}
+              hasMore={true}
+              loader={loader.loader}
+              style={{overflow : 'hidden'}}
+              endMessage={
+                <p style={{textAlign: 'center'}}>
+                  <b>Yay! You have seen it all</b>
+                </p>
+              }
+              >
+                <div className="row product-listing">
               {state.productDetails.length ? 
               state.productDetails.map(item => {
                 const ee = state.productDetails
@@ -143,6 +173,8 @@ const ProductList = (props) =>{
                   )     
                 }) : `Could not find the product you were looking for! Browse All Products ${shopDetails.shopName}, ${shopDetails.city}`}
               </div>
+            </InfiniteScroll>
+            
           </div>
       </section>
       <section>
