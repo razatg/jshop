@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { encryptData } from '../helpers/crypto';
 import {useEffect, useState} from 'react';
-import { fixedFooter, search , fetchMore} from '../helpers/commonUtils';
+import { fixedFooter, search , fetchMore ,fetchDataForSearch} from '../helpers/commonUtils';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const ProductList = (props) =>{
@@ -17,34 +17,65 @@ const ProductList = (props) =>{
     const [loader, setLoader] = useState({
       loader: true
     });
+    const [searchData, setSearchData] = useState({
+      dataToSearch: []
+    });
     useEffect(() => {
-       qSearch(q)
+       qSearch(q , props.id)
        fixedFooter()
      },[]);
 
-     function handleChange(e) {
-       let newList = []
-       if(e.target.value == ""){
-          newList = productDetails
-       }else{
-        newList = search(productDetails , e.target.value)
-       }
-      setState({
-        productDetails: newList
-      });
+    async function handleChange(e) {
+      let textToSearch = e.target.value
+      let newList = []
+      if(textToSearch == ""){
+        newList = state.productDetails
+      }else{
+        let dataObject;
+        if(searchData.dataToSearch.length == 0){
+          dataObject = await fetchDataForSearch(props.id);
+          setSearchData({
+            dataToSearch: dataObject
+          });
+          newList = search(dataObject , textToSearch)
+          setState({
+            productDetails: newList
+          });
+        }else{
+          newList = search(searchData.dataToSearch , textToSearch)
+          setState({
+            productDetails: newList
+          });
+        }
+      }
     }
 
-    function qSearch(q) {
+  async  function qSearch(q ,shopId) {
       console.log("11111111- " ,q)
         let newList = []
         if (q == "" || q == undefined) {
-            newList = productDetails
+            newList = state.productDetails
         } else {
-            newList = search(productDetails, q)
+          let dataObject;
+          if(searchData.dataToSearch.length == 0){
+            dataObject = await fetchDataForSearch(shopId);
+            setSearchData({
+              dataToSearch: dataObject
+            });
+            newList = search(dataObject , q)
+            setState({
+              productDetails: newList
+            });
+          }else{
+            newList = search(searchData.dataToSearch , q)
+            setState({
+              productDetails: newList
+            });
+          }
         }
-        setState({
-            productDetails: newList
-        });
+        // setState({
+        //     productDetails: newList
+        // });
     }
     async function loadMoreData(shopId){
       const data = await fetchMore(shopId, counter.counter);
@@ -69,7 +100,7 @@ const ProductList = (props) =>{
                  <header>
                     <a href={shopUrl}><img src="../static/img/jiffshop.svg" alt="logo"/></a>
                     <div className="search-container">
-                                    <input className="form-control form-control-lg form-control-borderless" defaultValue={q} type="text" placeholder="Search products"  onChange={handleChange}/>
+                                    <input className="form-control form-control-lg form-control-borderless" defaultValue={q} type="text" placeholder="Search products"  onChange={async (e) => {await handleChange(e)}}/>
                         <button type="submit">
                           <i className="fa fa-search" aria-hidden="true"></i>
                         </button>

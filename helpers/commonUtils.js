@@ -66,3 +66,19 @@ export async function fetchMore(shopId, counter){
      // newArray.reverse()
       return newArray
 }
+
+export async function fetchDataForSearch(shopId){
+  var newArray = [];
+  await firebase.database().ref(`/shop/${shopId}`).orderByChild('timeStamp').once('value').then( (snapshot) => {
+          snapshot.forEach((child ) => {
+              let obj = {}
+              obj = child.val()
+              if(obj.isLive == true){
+                obj["pushKey"] = child.key
+                newArray.push(obj)
+              }
+          });
+      });
+     // newArray.reverse()
+      return newArray
+}
