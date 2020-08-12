@@ -51,34 +51,39 @@ export function search(list , key){
     return newProductList
 
 }
-export async function fetchMore(shopId, counter){
+export async function fetchMore(productDetails, shopId, counter){
   var newArray = [];
-  await firebase.database().ref(`/shop/${shopId}`).orderByChild('timeStamp').limitToFirst(counter).once('value').then( (snapshot) => {
-          snapshot.forEach((child ) => {
-              let obj = {}
-              obj = child.val()
-              if(obj.isLive == true){
-                obj["pushKey"] = child.key
-                newArray.push(obj)
-              }
-          });
-      });
+  // await firebase.database().ref(`/shop/${shopId}`).orderByChild('timeStamp').limitToFirst(counter).once('value').then( (snapshot) => {
+  //         snapshot.forEach((child ) => {
+  //             let obj = {}
+  //             obj = child.val()
+  //             if(obj.isLive == true){
+  //               obj["pushKey"] = child.key
+  //               newArray.push(obj)
+  //             }
+  //         });
+  //     });
+  for(var i = 0; i < counter; i++){
+    if(productDetails[i] != undefined){
+      newArray.push(productDetails[i])
+    }
+  }
      // newArray.reverse()
       return newArray
 }
 
-export async function fetchDataForSearch(shopId){
-  var newArray = [];
-  await firebase.database().ref(`/shop/${shopId}`).orderByChild('timeStamp').once('value').then( (snapshot) => {
-          snapshot.forEach((child ) => {
-              let obj = {}
-              obj = child.val()
-              if(obj.isLive == true){
-                obj["pushKey"] = child.key
-                newArray.push(obj)
-              }
-          });
-      });
-     // newArray.reverse()
-      return newArray
-}
+// export async function fetchDataForSearch(shopId){
+//   var newArray = [];
+//   await firebase.database().ref(`/shop/${shopId}`).orderByChild('timeStamp').once('value').then( (snapshot) => {
+//           snapshot.forEach((child ) => {
+//               let obj = {}
+//               obj = child.val()
+//               if(obj.isLive == true){
+//                 obj["pushKey"] = child.key
+//                 newArray.push(obj)
+//               }
+//           });
+//       });
+//      // newArray.reverse()
+//       return newArray
+// }

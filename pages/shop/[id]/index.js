@@ -40,7 +40,7 @@ Shops.getInitialProps = async ({ query , req}) => {
     }).catch((error) => console.log(error));
 
     var productDetails = [];
-    await firebase.database().ref(`/shop/${shopId}`).orderByChild('timeStamp').limitToFirst(100).once('value').then( (snapshot) => {
+    await firebase.database().ref(`/shop/${shopId}`).orderByChild('timeStamp').once('value').then( (snapshot) => {
         snapshot.forEach((child ) => {
             let obj = {}
             obj = child.val()
@@ -50,9 +50,16 @@ Shops.getInitialProps = async ({ query , req}) => {
             }
         });
     });
- //   productDetails.reverse();
+    productDetails.reverse();
+    var productBatch = [];
+        for(var i = 0; i < 50; i++){
+            if(productDetails[i] != undefined){
+                productBatch.push(productDetails[i])
+            }
+        }
     return {shopDetails : shopDetails, 
             productDetails : productDetails,
+            productBatch : productBatch,
             shopId : shopId , 
             footerId: query.id,
             q:query.q,

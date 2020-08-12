@@ -5,21 +5,21 @@ import { fixedFooter, search , fetchMore ,fetchDataForSearch} from '../helpers/c
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const ProductList = (props) =>{
-    const { shopDetails ,productDetails, host, q } = props.details;
+    const { shopDetails ,productDetails, productBatch, host, q } = props.details;
     const shopId = encryptData(props.id);
     const shopUrl = `/shop/${shopDetails.slug}-${shopId}`;
     const [state, setState] = useState({
-      productDetails: productDetails
+      productDetails: productBatch
     });
     const [counter, setCounter] = useState({
-      counter: 200
+      counter: 100
     });
     const [loader, setLoader] = useState({
       loader: true
     });
-    const [searchData, setSearchData] = useState({
-      dataToSearch: []
-    });
+    // const [searchData, setSearchData] = useState({
+    //   dataToSearch: []
+    // });
     useEffect(() => {
        qSearch(q , props.id)
        fixedFooter()
@@ -31,23 +31,23 @@ const ProductList = (props) =>{
       if(textToSearch == ""){
         newList = state.productDetails
       }else{
-        let dataObject;
-        if(searchData.dataToSearch.length == 0){
-          dataObject = await fetchDataForSearch(props.id);
-          setSearchData({
-            dataToSearch: dataObject
-          });
-          newList = search(dataObject , textToSearch)
-          setState({
-            productDetails: newList
-          });
-        }else{
-          newList = search(searchData.dataToSearch , textToSearch)
+      //  let dataObject;
+      //  if(searchData.dataToSearch.length == 0){
+      //    dataObject = await fetchDataForSearch(props.id);
+          // setSearchData({
+          //   dataToSearch: dataObject
+          // });
+          newList = search(props.details.productDetails , textToSearch)
+          // setState({
+          //   productDetails: newList
+          // });
+     //   }else{
+       //   newList = search(searchData.dataToSearch , textToSearch)
           setState({
             productDetails: newList
           });
         }
-      }
+    //  }
     }
 
   async  function qSearch(q ,shopId) {
@@ -56,34 +56,19 @@ const ProductList = (props) =>{
         if (q == "" || q == undefined) {
             newList = state.productDetails
         } else {
-          let dataObject;
-          if(searchData.dataToSearch.length == 0){
-            dataObject = await fetchDataForSearch(shopId);
-            setSearchData({
-              dataToSearch: dataObject
-            });
-            newList = search(dataObject , q)
-            setState({
-              productDetails: newList
-            });
-          }else{
-            newList = search(searchData.dataToSearch , q)
-            setState({
-              productDetails: newList
-            });
-          }
+            newList = search(props.details.productDetails , q)
         }
-        // setState({
-        //     productDetails: newList
-        // });
+        setState({
+            productDetails: newList
+        });
     }
     async function loadMoreData(shopId){
-      const data = await fetchMore(shopId, counter.counter);
+      const data = await fetchMore(props.details.productDetails, shopId, counter.counter);
       setState({
         productDetails: data
       });
       setCounter({
-        counter: counter.counter + 100
+        counter: counter.counter + 50
       });
       setLoader({
         loader: false
