@@ -18,6 +18,10 @@ module.exports = {
 //   })
 //module.exports = withCSS();
 
+module.exports = {
+    compress: false,
+}
+
 module.exports = withOptimizedImages({
     webpack(config) {
         return config;
