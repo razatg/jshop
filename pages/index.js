@@ -1,20 +1,25 @@
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import Footer from '../components/Footer';
+import firebase from '../init/firebase';
 import {useEffect} from 'react';
 import {encryptData } from '../helpers/crypto';
 import {fixedFooter} from '../helpers/commonUtils';
-const Index = function(props){
+
+
+const Index = function (props) {
   useEffect(() => {
       fixedFooter();
     },[]);
-    
+
   const title = "Scan Barcodes/QR to create online Shop: JiffShop";
   const desc = "Download the Jiffy App and scan Barcodes/QR of the products in your retail shop, to create your on Website and get more customers and 💰";
   const shopId = `narula-stationary-${encryptData('9810015717')}`;
     return(
         <Layout title={title} desc={desc}>
-        {/* header section start */}
+            {/* header section start */
+                /*firebase.analytics().logEvent('select_content', { content_type: 'home' })*/
+            }
         <header className="header-section">
           <div className="container">
             <div className="row">

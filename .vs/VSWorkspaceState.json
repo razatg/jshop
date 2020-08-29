@@ -5,8 +5,9 @@
     "\\helpers",
     "\\pages",
     "\\pages\\shop",
-    "\\pages\\shop\\[id]"
+    "\\pages\\shop\\[id]",
+    "\\static"
   ],
-  "SelectedNode": "\\components\\ProductList.js",
+  "SelectedNode": "\\components\\Footer.js",
   "PreviewInSolutionExplorer": false
 }

@@ -51,7 +51,6 @@ const ProductList = (props) =>{
     }
 
   async  function qSearch(q ,shopId) {
-      console.log("11111111- " ,q)
         let newList = []
         if (q == "" || q == undefined) {
             newList = state.productDetails
@@ -199,7 +198,7 @@ const ProductList = (props) =>{
               <div className="col-md-12">
                   <div className="footer-inner text-center details">
                     <div className="mtop"></div>
-                    <h1 class="sold-by">Sold By:</h1>
+                    <h1 className="sold-by">Sold By:</h1>
                       <h2>{shopDetails.shopName}</h2>
                       <h3>{shopDetails.shopAddress}</h3>
                       <h3>{shopDetails.city} {shopDetails.pinCode}</h3>
